@@ -99,7 +99,7 @@
                 })
                 .catch(err => console.error(err));
             
-            const searchButton = document.getElementById('search-btn'); //검색버튼 할당
+            const searchButton = document.getElementById('search-btn'); //검색버튼 할당 *DOM이 로드되기 전에 실행시 addEventListner를 읽을 수 없음
             searchButton.addEventListener('click', function (event) {
                 // 기본 동작 방지
                 event.preventDefault();
@@ -107,9 +107,8 @@
                 // 검색 함수 호출
                 search();
             });
-
         });
-
+        
         let createCard = movieInfo => { //카드생성
             const complete_poster_path = "https://image.tmdb.org/t/p/"+ "w500" + movieInfo.poster_path; //기본주소 + 크기(w) + 이미지주소
             const newCard = `
@@ -147,7 +146,7 @@
         function findOverlap(info, input) {
             info = info.toLowerCase(); //대소문자 구분없이 비교하기위해 전부 입력값과 영화타이틀을 소문자로 바꾼다.
             input = input.toLowerCase();
-            return info.includes(input) ? true : false; //includes함수를 사용해서 확인한다.
+            return info.includes(input); //includes함수를 사용해서 확인한다.
         }
     </script>
 </head>
