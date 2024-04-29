@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function () { //DOM이 로드되�
 });
 
 let createCard = movieInfo => { //카드생성
-    const complete_poster_path = "https://image.tmdb.org/t/p/" + "w500" + movieInfo.poster_path; //기본주소 + 크기(w) + 이미지주소
+    const complete_poster_path = "https://image.tmdb.org/t/p/w500" + movieInfo.poster_path; //기본주소 + 크기(w) + 이미지주소
     const votePercentage = (movieInfo.vote_average / 10) * 100; // 평점을 백분율로 변환
     const newCard = `
     <div class="card mb-3 movie-card" style="max-width: 900px;" id=${movieInfo.id}>
