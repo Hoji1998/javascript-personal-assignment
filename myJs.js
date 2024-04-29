@@ -33,14 +33,25 @@ document.addEventListener('DOMContentLoaded', function () { //DOM이 로드되�
 
 let createCard = movieInfo => { //카드생성
     const complete_poster_path = "https://image.tmdb.org/t/p/" + "w500" + movieInfo.poster_path; //기본주소 + 크기(w) + 이미지주소
+    const votePercentage = (movieInfo.vote_average / 10) * 100; // 평점을 백분율로 변환
     const newCard = `
-    <div class="movie-card" id=${movieInfo.id}>
-        <img src= ${complete_poster_path} alt="...">
-        <h3 class="movie-title">${movieInfo.title}</h3>
-        <p>
-        ${movieInfo.overview}
-        </p>
-        <p>Rating: ${movieInfo.vote_average}</p>
+    <div class="card mb-3 movie-card" style="max-width: 900px;" id=${movieInfo.id}>
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="${complete_poster_path}" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title movie-title">${movieInfo.title}</h5>
+                    <p class="card-text">${movieInfo.overview}</p>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: ${votePercentage}%" aria-valuenow="${movieInfo.vote_average}" aria-valuemin="0" aria-valuemax="10"></div>
+                    </div>
+                    <p class="card-text"><small class="text-body-secondary">
+                        Rating: ${movieInfo.vote_average}
+                 </div>
+            </div>
+        </div>
     </div>`; //카드를 만드는 html
     /*const container = */document.querySelector('.card-list').insertAdjacentHTML('beforeend', newCard);
     //container.insertAdjacentHTML('beforeend', newCard); //카드리스트를 찾아서 html을 붙여준다
